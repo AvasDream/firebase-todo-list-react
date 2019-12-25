@@ -68,11 +68,6 @@ const ToDoState = props => {
         name: todo,
         done: false
       });
-
-    dispatch({
-      type: CREATE_TODO,
-      payload: todo
-    });
   };
   // eslint-disable-next-line react/prop-types
   const { children } = props;

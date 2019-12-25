@@ -1,8 +1,12 @@
 import React from "react";
-import { ListGroupItem, Badge } from "reactstrap";
+import { ListGroupItem, Badge, Input } from "reactstrap";
 
 function ToDoElement({ name, done }) {
   let content = "";
+  const handleChange = evt => {
+    evt.preventDefault();
+    console.log(evt);
+  };
   if (done) {
     content = (
       <ListGroupItem tag="button">
@@ -14,10 +18,10 @@ function ToDoElement({ name, done }) {
     );
   } else {
     content = (
-      <ListGroupItem tag="button">
+      <ListGroupItem tag="button" onDoubleClick={handleChange}>
         {name}
         <Badge color="primary" pill className="ml-5">
-          Just do it!
+          Do it
         </Badge>
       </ListGroupItem>
     );
