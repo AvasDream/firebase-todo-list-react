@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import useForm from "./context/form/useForm";
+import ToDoContext from "./context/todo/ToDoContext";
 function CreateForm() {
   const submitAction = () => {
-    console.log(values);
+    createToDo(values.todo);
   };
   const { values, handleChange, handleSubmit } = useForm(submitAction);
+  const { createToDo } = useContext(ToDoContext);
+
   return (
     <>
       <Form onSubmit={handleSubmit}>

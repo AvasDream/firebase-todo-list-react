@@ -5,13 +5,19 @@ export default (state, action) => {
     case GET_TODOS:
       return {
         ...state,
-        nodes: action.payload,
+        todos: action.payload,
         loading: false
       };
     case CREATE_TODO:
       return {
         ...state,
-        message: action.payload
+        todos: [
+          ...state.todos,
+          {
+            name: action.payload,
+            done: false
+          }
+        ]
       };
     default:
       return state;
