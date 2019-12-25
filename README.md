@@ -1,5 +1,7 @@
 ## Steps
 
+- Create minimal UI
+- Create Context
 - Get ToDos from Firebase
 - Create Todos on Firebase
 - mark Todos as finished
