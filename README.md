@@ -5,6 +5,8 @@
 - Get ToDos from Firebase
 - Create Todos on Firebase
 - mark Todos as finished
+- delete todo
+- edit todo
 
 ## Data structures
 

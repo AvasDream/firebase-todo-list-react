@@ -5,8 +5,7 @@ export default (state, action) => {
     case GET_TODOS:
       return {
         ...state,
-        todos: action.payload,
-        loading: false
+        todos: action.payload
       };
     case CREATE_TODO:
       return {

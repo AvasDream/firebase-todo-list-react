@@ -8,15 +8,20 @@ function ToDoList() {
     getToDos();
     // eslint-disable-next-line
   }, []);
-  return (
-    <>
+  let toDoList = todos ? todos : [];
+  let content = "";
+  if (toDoList.length === 0) {
+    content = <h5>No Tasks available!</h5>;
+  } else {
+    content = (
       <ListGroup>
         {todos.map(todo => (
           <ToDoElement name={todo.name} done={todo.done} key={Math.random()} />
         ))}
       </ListGroup>
-    </>
-  );
+    );
+  }
+  return <>{content}</>;
 }
 
 export default ToDoList;
