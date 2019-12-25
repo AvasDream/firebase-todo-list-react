@@ -2,8 +2,9 @@
 
 - ~~Create minimal UI~~
 - ~~Create Context~~
-- Get ToDos from Firebase
-- Create Todos on Firebase
+- ~~Get ToDos from Firebase~~
+- ~~Create Todos on Firebase~~
+- Database structure as List not Object
 - mark Todos as finished
 - delete todo
 - edit todo
