@@ -1,11 +1,17 @@
-import { GET_TODOS, CREATE_TODO } from "./types";
+import { GET_TODOS, CREATE_TODO, SET_ERROR } from "./types";
 
 export default (state, action) => {
   switch (action.type) {
     case GET_TODOS:
       return {
         ...state,
-        todos: action.payload
+        todos: action.payload,
+        error: null
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     case CREATE_TODO:
       return {

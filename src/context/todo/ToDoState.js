@@ -3,7 +3,7 @@ import ToDoReducer from "./ToDoReducer";
 import ToDoContext from "./ToDoContext";
 import firebase from "firebase";
 import uuid from "uuid/v4";
-import { GET_TODOS, CREATE_TODO } from "./types";
+import { GET_TODOS, CREATE_TODO, SET_ERROR } from "./types";
 
 let config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -21,7 +21,8 @@ const database = firebase.database();
 
 const ToDoState = props => {
   const initialState = {
-    todos: []
+    todos: [],
+    error: null
   };
   const [state, dispatch] = useReducer(ToDoReducer, initialState);
 
@@ -52,14 +53,22 @@ const ToDoState = props => {
           });
         },
         function(errorObject) {
-          console.log("The read failed: " + errorObject.code);
+          console.log("Hello from errorObject");
+          setError(errorObject.message);
         }
       );
     } catch (error) {
+      console.log("Hello from catch");
       console.log(error.message);
+      setError(error.message);
     }
   };
-
+  const setError = error => {
+    dispatch({
+      type: SET_ERROR,
+      payload: error
+    });
+  };
   const createToDo = todo => {
     /* Not necessary firebase has a List datastructure where the id is auto generated */
     /* let id = uuid();
@@ -81,6 +90,7 @@ const ToDoState = props => {
     <ToDoContext.Provider
       value={{
         todos: state.todos,
+        error: state.error,
         getToDos,
         createToDo
       }}
