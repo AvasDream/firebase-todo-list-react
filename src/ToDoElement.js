@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroupItem, Badge, Input } from "reactstrap";
+import { ListGroupItem, Badge } from "reactstrap";
 
 function ToDoElement({ name, done }) {
   let content = "";

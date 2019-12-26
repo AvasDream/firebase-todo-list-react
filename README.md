@@ -4,6 +4,7 @@
 - ~~Create Context~~
 - ~~Get ToDos from Firebase~~
 - ~~Create Todos on Firebase~~
+- Add authentication
 - Database structure as List not Object
 - mark Todos as finished
 - delete todo
@@ -21,6 +22,8 @@ ToDo
 ```
 
 ## Environment File
+
+This will only work with the default create-react-app setup. Otherwise be sure to use the _getenv_ package to load the variables of the environment file.
 
 ```
 BROWSER="none"

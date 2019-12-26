@@ -28,23 +28,24 @@ const ToDoState = props => {
   // Get Nodes
   const getToDos = async () => {
     try {
-      var ref = database.ref("todos/");
+      var ref = database.ref("todo-list");
 
       // Attach an asynchronous callback to read the data at our posts reference
       ref.on(
         "value",
         function(snapshot) {
-          let data = snapshot.val();
-          let todoList = Object.entries(data);
+          let data = snapshot;
           let cleanedData = [];
-          todoList.map(l =>
+          data.forEach(function(childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
             cleanedData.push({
-              id: l[0],
-              name: l[1].name,
-              done: l[1].done
-            })
-          );
-          console.log(cleanedData);
+              id: childKey,
+              name: childData.name,
+              done: childData.done
+            });
+          });
+
           dispatch({
             type: GET_TODOS,
             payload: cleanedData
@@ -60,14 +61,19 @@ const ToDoState = props => {
   };
 
   const createToDo = todo => {
-    let id = uuid();
-    firebase
-      .database()
-      .ref("todos/" + id)
-      .set({
-        name: todo,
-        done: false
-      });
+    /* Not necessary firebase has a List datastructure where the id is auto generated */
+    /* let id = uuid();
+    database.ref("todos/" + id).set({
+      name: todo,
+      done: false
+    }); */
+    let todoListRef = database.ref("todo-list");
+    var newPostRef = todoListRef.push();
+    newPostRef.set({
+      id: newPostRef.key,
+      name: todo,
+      done: false
+    });
   };
   // eslint-disable-next-line react/prop-types
   const { children } = props;
